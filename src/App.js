@@ -30,7 +30,7 @@ function App() {
 
   const [guessedLetters, setGuessedLetters] = useState([])
   const [wrongLetters, setWrongLetters] = useState([])
-  const [guesses, setGuesses] = useState(guessesQtd)
+  const [guesses, setGuesses] = useState(3)
   const [score, setScore] = useState(0)
 
 
@@ -46,7 +46,6 @@ function App() {
     clearLetterStates()
 
     const { word, category } = pickWordAndCategory()
-    console.log(word, category)
 
     let wordLetters = word.split("")
 
@@ -65,7 +64,7 @@ function App() {
 
     //checar se uma letra já foi utilizada
     if(guessedLetters.includes(normalizedLetter) || wrongLetters.includes(normalizedLetter)){
-      return
+      return;
     }
 
     if(letters.includes(normalizedLetter)) {
@@ -84,6 +83,13 @@ function App() {
 
   }
 
+   // resseta o jogo
+   const retry = () => {
+    setScore(0)
+    setGuesses(3)
+    setGameStage(stages[0].name)
+  }
+
   const clearLetterStates = () => {
     setGuessedLetters([])
     setWrongLetters([])
@@ -92,7 +98,7 @@ function App() {
   //monitora algum dado, tem uma função que será executada a cada vez que o dado for alterado, 
   //como segundo argumento recebe o dado que deseja monitorar entre []
   useEffect(() => {
-    if(guesses <= 0) {
+    if(guesses === 0) {
       //resetar todos os states
       clearLetterStates()
       setGameStage(stages[2].name)
@@ -108,12 +114,7 @@ function App() {
     }
   }, [guessedLetters, letters, startGame])
 
-  // resseta o jogo
-  const retry = () => {
-    setScore(0)
-    setGuesses(guessesQtd)
-    setGameStage(stages[0].name)
-  }
+ 
 
   return (
     <div className="App">
