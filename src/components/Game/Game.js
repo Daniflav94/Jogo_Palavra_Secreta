@@ -66,7 +66,7 @@ const Game = ({
           <span key={i}>{letter}</span>
         ))}
       </div>
-      <button onClick={verifyLetter}>Finalizar jogo</button>
+
     </div>
   );
 };
