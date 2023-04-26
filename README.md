@@ -2,6 +2,7 @@
 
 ## Descrição
 Jogo de adivinhação de palavras com pontuação e tentativas.
+Esse projeto foi desenvolvido durante aula de React com o objetivo de praticar os conceitos básicos como hooks e props. 
 
 ## Tecnologias
 -React.
